@@ -18,15 +18,7 @@ namespace bpm.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [NotMapped]
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
-
-        //public virtual ICollection<Entry> Entries { get; set; }
+        //[NotMapped]
+        //public virtual List<Entry> Entries { get; set; }
     }
 }
