@@ -1,0 +1,60 @@
+﻿@model bpm.Models.Entry
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Entry</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateEntered)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateEntered)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Systolic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Systolic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Diastolic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Diastolic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pulse)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pulse)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
