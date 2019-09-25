@@ -15,11 +15,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateEntered)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Systolic)
-            </th>
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Diastolic)
+                @Html.DisplayNameFor(model => model.BloodPressure)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pulse)
@@ -27,9 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Weight)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Notes)
-            </th>
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.User)
             </th>*@
@@ -37,35 +37,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateEntered)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Systolic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diastolic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pulse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEntered)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Systolic)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BloodPressure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pulse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.User.Id)
+                </td>*@
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>*@
+            </tr>
+            <tr>
+                <td class="table-note text-secondary" colspan="12">@Html.DisplayFor(modelItem => item.Notes)</td>
+            </tr>
+        }
     </tbody>
 </table>
