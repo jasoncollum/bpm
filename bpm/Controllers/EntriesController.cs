@@ -22,8 +22,8 @@ namespace bpm.Controllers
         // GET: Entries
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Entry.Include(e => e.User);
-            return View(await applicationDbContext.ToListAsync());
+            var entries = _context.Entry.Include(e => e.User);
+            return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
         }
 
         // GET: Entries/Details/5

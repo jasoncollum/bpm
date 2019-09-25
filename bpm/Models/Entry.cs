@@ -15,7 +15,8 @@ namespace bpm.Models
         [Required]
         [DataType(DataType.DateTime)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Display(Name = "Date / Time")]
+        [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy h:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateEntered { get; set; }
 
         [Required]
@@ -25,6 +26,16 @@ namespace bpm.Models
         [Required]
         [Range(1, 300, ErrorMessage = "Please check your Diastolic entry number")]
         public int Diastolic { get; set; }
+
+        [NotMapped]
+        [Display(Name = "BP")]
+        public string BloodPressure
+        {
+            get
+            {
+                return $"{Systolic}/{Diastolic}";
+            }
+        }
 
         [Required]
         [Range(1, 300, ErrorMessage = "Number should not exceed 200")]
