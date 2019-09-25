@@ -15,6 +15,7 @@ namespace bpm.Models
         [Required]
         [DataType(DataType.DateTime)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Display(Name = "Date / Time")]
         public DateTime DateEntered { get; set; }
 
         [Required]
