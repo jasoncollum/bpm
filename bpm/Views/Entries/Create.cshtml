@@ -4,11 +4,77 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@*<h1>Create</h1>
 
 <h4>Entry</h4>
-<hr />
-<div class="row">
+<hr />*@
+
+    <form asp-action="Create">
+        <div class="row justify-content-center">
+            <div class="bd-example" id="questions-carousel" style="height:80%; width:80%">
+                <div id="carouselExampleCaptions" class="carousel slide" data-interval="false">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                        @*<li data-target="#carouselExampleCaptions" data-slide-to="3"></li>*@
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card" style="height:80vh;">
+                                <img src="https://www.trzcacak.rs/myfile/detail/62-621584_heartbeat-ekg-ecg-pulse-heart-rate-free-image.png" class="card-img-top create-img" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Enter your Systolic and Diastolic numbers</h5>
+                                    <div class="text-center">
+                                        <input asp-for="Systolic" class="form-control num-input" placeholder="Systolic" />
+                                        <input asp-for="Diastolic" class="form-control num-input" placeholder="Diastolic" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card" style="height:80vh;">
+                                <img src="https://www.trzcacak.rs/myfile/detail/62-621584_heartbeat-ekg-ecg-pulse-heart-rate-free-image.png" class="card-img-top create-img" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Enter your Pulse and Weight</h5>
+                                    <div class="text-center">
+                                        <input asp-for="Pulse" class="form-control num-input" placeholder="Pulse" />
+                                        <input asp-for="Weight" class="form-control num-input" placeholder="Weight" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card" style="height:80vh;">
+                                <img src="https://www.trzcacak.rs/myfile/detail/62-621584_heartbeat-ekg-ecg-pulse-heart-rate-free-image.png" class="card-img-top create-img" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Enter any additional notes</h5>
+                                    <div class="text-center">
+                                        <textarea asp-for="Notes" rows="3" class="form-control" placeholder="Notes..."></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-primary create-submit-btn float-right">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next text-primary" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -54,4 +120,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@
