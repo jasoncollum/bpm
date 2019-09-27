@@ -7,22 +7,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using bpm.Data;
 using bpm.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace bpm.Controllers
 {
+    [Authorize]
     public class EntriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EntriesController(ApplicationDbContext context)
+        public EntriesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Entries
         public async Task<IActionResult> Index()
         {
-            var entries = _context.Entry.Include(e => e.User);
+            var user = await GetCurrentUserAsync();
+
+            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id);
+
             return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
         }
 
@@ -156,5 +164,7 @@ namespace bpm.Controllers
         {
             return _context.Entry.Any(e => e.Id == id);
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }
