@@ -56,7 +56,7 @@ namespace bpm.Controllers
         // GET: Entries/Create
         public IActionResult Create()
         {
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
@@ -67,13 +67,19 @@ namespace bpm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,DateEntered,Systolic,Diastolic,Pulse,Weight,Notes,ApplicationUserId")] Entry entry)
         {
+            var user = await GetCurrentUserAsync();
+
+            ModelState.Remove("UserId");
+
             if (ModelState.IsValid)
             {
+                entry.ApplicationUserId = user.Id;
+
                 _context.Add(entry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
             return View(entry);
         }
 

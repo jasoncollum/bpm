@@ -63,7 +63,7 @@ body {
 }
 
 .create-img {
-    max-width: 250px;
+    max-width: 300px;
     margin: 0 auto;
 }
 
@@ -81,11 +81,15 @@ body {
 
 .num-input {
     width: 125px;
-    display: inline-block;
+    margin: 0 auto 5px auto;
+}
+
+.create-btn-div {
+    text-align: center !important;
 }
 
 .create-submit-btn {
-    margin-top: 16px;
+    margin: 16px;
 }
 
 /* Media Queries */
@@ -95,7 +99,17 @@ body {
         max-width: 750px;
     }
 
+    .num-input {
+        display: inline-block;
+    }
+
     .create-img {
         max-width: 250px;
+    }
+
+    .create-btn-div {
+        text-align: right !important;
+        margin-top: -8px;
+        margin-right: 12.5%;
     }
 }
