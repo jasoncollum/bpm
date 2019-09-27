@@ -63,7 +63,7 @@ body {
 }
 
 .create-img {
-    max-width: 300px;
+    max-width: 250px;
     margin: 0 auto;
 }
 
@@ -85,11 +85,16 @@ body {
 }
 
 .create-submit-btn {
-    margin-top: 5px;
+    margin-top: 16px;
 }
 
 /* Media Queries */
 @media (min-width: 576px) {
+    #create-form {
+        margin: 0 auto;
+        max-width: 750px;
+    }
+
     .create-img {
         max-width: 250px;
     }
