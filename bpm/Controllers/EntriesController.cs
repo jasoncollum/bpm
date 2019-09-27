@@ -7,22 +7,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using bpm.Data;
 using bpm.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace bpm.Controllers
 {
+    [Authorize]
     public class EntriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EntriesController(ApplicationDbContext context)
+        public EntriesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Entries
         public async Task<IActionResult> Index()
         {
-            var entries = _context.Entry.Include(e => e.User);
+            var user = await GetCurrentUserAsync();
+
+            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id);
+
             return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
         }
 
@@ -48,7 +56,7 @@ namespace bpm.Controllers
         // GET: Entries/Create
         public IActionResult Create()
         {
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
@@ -59,13 +67,19 @@ namespace bpm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,DateEntered,Systolic,Diastolic,Pulse,Weight,Notes,ApplicationUserId")] Entry entry)
         {
+            var user = await GetCurrentUserAsync();
+
+            ModelState.Remove("UserId");
+
             if (ModelState.IsValid)
             {
+                entry.ApplicationUserId = user.Id;
+
                 _context.Add(entry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
             return View(entry);
         }
 
@@ -156,5 +170,7 @@ namespace bpm.Controllers
         {
             return _context.Entry.Any(e => e.Id == id);
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }

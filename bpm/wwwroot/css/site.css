@@ -81,16 +81,35 @@ body {
 
 .num-input {
     width: 125px;
-    display: inline-block;
+    margin: 0 auto 5px auto;
+}
+
+.create-btn-div {
+    text-align: center !important;
 }
 
 .create-submit-btn {
-    margin-top: 5px;
+    margin: 16px;
 }
 
 /* Media Queries */
 @media (min-width: 576px) {
+    #create-form {
+        margin: 0 auto;
+        max-width: 750px;
+    }
+
+    .num-input {
+        display: inline-block;
+    }
+
     .create-img {
         max-width: 250px;
+    }
+
+    .create-btn-div {
+        text-align: right !important;
+        margin-top: -8px;
+        margin-right: 12.5%;
     }
 }
