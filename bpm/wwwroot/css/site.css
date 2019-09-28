@@ -57,6 +57,10 @@ body {
 
 /* Custom Styling
  ------------------------------------------- */
+.index-links {
+    width: 100%;
+}
+
 .table-note {
     border-top: none !important;
     padding-top: 0px !important;
