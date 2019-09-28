@@ -34,6 +34,36 @@ namespace bpm.Controllers
             return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
         }
 
+        // GET: Last 7 Days Entries
+        public async Task<IActionResult> Last7Days()
+        {
+            var user = await GetCurrentUserAsync();
+            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
+            e.DateEntered > DateTime.Now.AddDays(-7));
+
+            return View("Index", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+        }
+
+        // GET: Last 30 Days Entries
+        public async Task<IActionResult> Last30Days()
+        {
+            var user = await GetCurrentUserAsync();
+            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
+            e.DateEntered > DateTime.Now.AddDays(-30));
+
+            return View("Index", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+        }
+
+        // GET: Last 12 Months Entries
+        public async Task<IActionResult> Last12Months()
+        {
+            var user = await GetCurrentUserAsync();
+
+            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id);
+
+            return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+        }
+
         // GET: Entries/Details/5
         public async Task<IActionResult> Details(int? id)
         {
