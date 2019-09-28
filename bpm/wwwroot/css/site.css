@@ -61,6 +61,14 @@ body {
     width: 100%;
 }
 
+/*.filters-div {
+    margin: 0 auto;
+}*/
+
+.filter-btn {
+    margin: 5px;
+}
+
 .table-note {
     border-top: none !important;
     padding-top: 0px !important;
