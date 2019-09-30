@@ -9,9 +9,9 @@
 <div class="index-links">
     <a asp-action="Create">record a new entry</a>
 
-    <a href="#" class="float-right">filter entries</a>
+    <a href="#" class="float-right filter-entries">filter entries</a>
 </div>
-<div class="filters-div text-center">
+<div class="filters-div text-center" style="display: none;">
     <a type-"button" class="btn btn-outline-primary filter-btn" asp-action="Last7Days">7 Days</a>
     <a type-"button" class="btn btn-outline-primary filter-btn" asp-action="Last30Days">30 Days</a>
     <button class="btn btn-outline-primary filter-btn" asp-action="Last12Months">12 Months</button>
@@ -81,3 +81,15 @@
         }
     </tbody>
 </table>
+
+<script>
+    const filterEntries = document.querySelector('.filter-entries');
+    const filtersDiv = document.querySelector('.filters-div');
+    filterEntries.addEventListener('click', (e) => {
+        if (filtersDiv.style.display === "none") {
+            filtersDiv.style.display = "block";
+        } else {
+            filtersDiv.style.display = "none";
+        }
+    });
+</script>
