@@ -29,31 +29,57 @@ namespace bpm.Controllers
         {
             var user = await GetCurrentUserAsync();
 
-            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id);
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id).ToListAsync();
 
-            return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+            return View(entries.OrderByDescending(ent => ent.DateEntered));
         }
 
         // GET: Last 7 Days Entries
         public async Task<IActionResult> Last7Days()
         {
             var user = await GetCurrentUserAsync();
-            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
-            e.DateEntered > DateTime.Now.AddDays(-7));
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
+            e.DateEntered > DateTime.Now.AddDays(-7)).ToListAsync();
 
-            
+            if (entries.Count != 0)
+            {
+                double SysAverage = entries.Average(e => e.Systolic);
+                var sysAvg = Math.Round(SysAverage, 0, MidpointRounding.AwayFromZero);
+                double DiaAverage = entries.Average(e => e.Diastolic);
+                var diaAvg = Math.Round(DiaAverage, 0, MidpointRounding.AwayFromZero);
 
-            return View("Days", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+                ViewBag.Avg = $"7 Day Average: {sysAvg}/{diaAvg}";
+                return View("Days", entries.OrderByDescending(ent => ent.DateEntered));
+            }
+            else
+            {
+                ViewBag.Avg = $"There have been no entries in the last 7 days";
+                return View("Days", entries.OrderByDescending(ent => ent.DateEntered));
+            }
         }
 
         // GET: Last 30 Days Entries
         public async Task<IActionResult> Last30Days()
         {
             var user = await GetCurrentUserAsync();
-            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
-            e.DateEntered > DateTime.Now.AddDays(-30));
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
+            e.DateEntered > DateTime.Now.AddDays(-30)).ToListAsync();
 
-            return View("Days", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+            if (entries.Count != 0)
+            {
+                double SysAverage = entries.Average(e => e.Systolic);
+                var sysAvg = Math.Round(SysAverage, 0, MidpointRounding.AwayFromZero);
+                double DiaAverage = entries.Average(e => e.Diastolic);
+                var diaAvg = Math.Round(DiaAverage, 0, MidpointRounding.AwayFromZero);
+
+                ViewBag.Avg = $"30 Day Average: {sysAvg}/{diaAvg}";
+                return View("Days", entries.OrderByDescending(ent => ent.DateEntered));
+            }
+            else
+            {
+                ViewBag.Avg = $"There have been no entries in the last 30 days";
+                return View("Days", entries.OrderByDescending(ent => ent.DateEntered));
+            }
         }
 
         // GET: Last 12 Months Entries
