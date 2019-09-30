@@ -57,6 +57,18 @@ body {
 
 /* Custom Styling
  ------------------------------------------- */
+.index-links {
+    width: 100%;
+}
+
+/*.filters-div {
+    display: none;
+}*/
+
+.filter-btn {
+    margin: 5px 5px 10px 5px;
+}
+
 .table-note {
     border-top: none !important;
     padding-top: 0px !important;
