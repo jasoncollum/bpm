@@ -1,0 +1,72 @@
+﻿@model IEnumerable<bpm.Models.Entry>
+
+@{
+    ViewData["Title"] = "Days";
+}
+
+@*<h1>Days</h1>*@
+
+<div class="index-links">
+    <a asp-action="Create">record a new entry</a>
+
+    <a href="#" class="float-right filter-entries">filter entries</a>
+</div>
+<div class="filters-div text-center" style="display: none;">
+    <a type-"button" class="btn btn-outline-primary filter-btn" asp-action="Last7Days">7 Days</a>
+    <a type-"button" class="btn btn-outline-primary filter-btn" asp-action="Last30Days">30 Days</a>
+    <button class="btn btn-outline-primary filter-btn" asp-action="Last12Months">12 Months</button>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEntered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodPressure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pulse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEntered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BloodPressure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pulse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+            </tr>
+            <tr>
+                <td class="table-note text-secondary" colspan="12">@Html.DisplayFor(modelItem => item.Notes)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    const filterEntries = document.querySelector('.filter-entries');
+    const filtersDiv = document.querySelector('.filters-div');
+    filterEntries.addEventListener('click', (e) => {
+        if (filtersDiv.style.display === "none") {
+            filtersDiv.style.display = "block";
+        } else {
+            filtersDiv.style.display = "none";
+        }
+    });
+</script>

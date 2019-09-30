@@ -41,7 +41,9 @@ namespace bpm.Controllers
             var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
             e.DateEntered > DateTime.Now.AddDays(-7));
 
-            return View("Index", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+            
+
+            return View("Days", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
         }
 
         // GET: Last 30 Days Entries
@@ -51,7 +53,7 @@ namespace bpm.Controllers
             var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
             e.DateEntered > DateTime.Now.AddDays(-30));
 
-            return View("Index", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+            return View("Days", await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
         }
 
         // GET: Last 12 Months Entries
