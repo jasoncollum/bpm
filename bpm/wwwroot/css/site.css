@@ -61,12 +61,8 @@ body {
     width: 100%;
 }
 
-/*.filters-div {
-    margin: 0 auto;
-}*/
-
 .filter-btn {
-    margin: 5px;
+    margin: 5px 5px 10px 5px;
 }
 
 .table-note {
