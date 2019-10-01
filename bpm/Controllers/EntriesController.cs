@@ -86,10 +86,18 @@ namespace bpm.Controllers
         public async Task<IActionResult> Last12Months()
         {
             var user = await GetCurrentUserAsync();
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
+            e.DateEntered > DateTime.Now.AddMonths(-12)).ToListAsync();
 
-            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id);
-
-            return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+            if (entries.Count != 0)
+            {
+                return View("Months", entries);
+            }
+            else
+            {
+                ViewBag.Avg = $"There have been no entries in the last 12 Months";
+                return View("Months", entries.OrderByDescending(ent => ent.DateEntered));
+            }
         }
 
         // GET: Entries/Details/5

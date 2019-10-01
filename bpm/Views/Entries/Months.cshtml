@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<bpm.Models.Entry>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Months";
 }
 
-@*<h1>Index</h1>*@
+@*<h1>Days</h1>*@
 
 <div class="index-links">
     <a asp-action="Create">record a new entry</a>
@@ -23,9 +23,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateEntered)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Systolic)
-                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.BloodPressure)
             </th>
@@ -35,12 +32,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Weight)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Notes)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.User)
-                </th>*@
             <th></th>
         </tr>
     </thead>
@@ -51,9 +42,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DateEntered)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Systolic)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.BloodPressure)
                 </td>
@@ -63,17 +51,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Weight)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Notes)
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.User.Id)
-                    </td>*@
-                @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>*@
             </tr>
             <tr>
                 <td class="table-note text-secondary" colspan="12">@Html.DisplayFor(modelItem => item.Notes)</td>
