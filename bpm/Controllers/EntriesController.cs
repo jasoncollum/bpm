@@ -9,6 +9,7 @@ using bpm.Data;
 using bpm.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using System.Dynamic;
 
 namespace bpm.Controllers
 {
@@ -86,10 +87,29 @@ namespace bpm.Controllers
         public async Task<IActionResult> Last12Months()
         {
             var user = await GetCurrentUserAsync();
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id && 
+            e.DateEntered > DateTime.Now.AddMonths(-12)).ToListAsync();
 
-            var entries = _context.Entry.Where(e => e.ApplicationUserId == user.Id);
 
-            return View(await entries.OrderByDescending(ent => ent.DateEntered).ToListAsync());
+           var monthAverages = entries.Select(e => (e.DateEntered.Year, e.DateEntered.Month, e.Systolic, e.Diastolic))
+                .GroupBy(x => (x.Year, x.Month), (key, group) => new Month()
+            {
+                Yr = key.Year,
+                Mnth = key.Month,
+                SysAvg = group.Average(e => e.Systolic),
+                DiaAvg = group.Average(e => e.Diastolic)
+            }).ToList();
+
+            if (monthAverages.ToList().Count > 0)
+            {
+                //ViewBag.monthAverages = monthAverages;
+                return View("Months", monthAverages.OrderByDescending(e => e.Mnth));
+            }
+            else
+            {
+                ViewBag.Avg = $"There have been no entries in the last 12 Months";
+                return View("Months", monthAverages);
+            }
         }
 
         // GET: Entries/Details/5
