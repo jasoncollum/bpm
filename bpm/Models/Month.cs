@@ -12,6 +12,7 @@ namespace bpm.Models
         public int Yr { get; set; }
 
         [NotMapped]
+
         public int Mnth { get; set; }
 
         [NotMapped]

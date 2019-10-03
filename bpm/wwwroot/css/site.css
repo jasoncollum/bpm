@@ -61,13 +61,29 @@ body {
     width: 100%;
 }
 
-/*.filters-div {
-    display: none;
-}*/
-
 .filter-btn {
     margin: 5px 5px 10px 5px;
 }
+
+.months-container {
+    margin-top: 10px;
+}
+
+.month-btn {
+    color: #adb5bd;
+    border-color: #adb5bd;
+    width: 300px;
+    margin: 5px auto;
+    padding: 2px 0;
+    font-size: 20px;
+    display: block;
+}
+
+    .month-btn:hover {
+        color: #fff;
+        background-color: #f1f3f4;
+        border-color: #adb5bd;
+    }
 
 .table-note {
     border-top: none !important;
