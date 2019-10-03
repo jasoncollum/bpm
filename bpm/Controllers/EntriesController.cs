@@ -112,6 +112,17 @@ namespace bpm.Controllers
             }
         }
 
+        // GET: Specific Month's Entries
+        public async Task<IActionResult> MonthData(int? month, int year)
+        {
+            var user = await GetCurrentUserAsync();
+
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id && 
+            (e.DateEntered.Month == month && e.DateEntered.Year == year)).ToListAsync();
+
+            return View("Index", entries.OrderByDescending(ent => ent.DateEntered));
+        }
+
         // GET: Entries/Details/5
         public async Task<IActionResult> Details(int? id)
         {
