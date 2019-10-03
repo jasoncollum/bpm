@@ -15,10 +15,15 @@
     <a class="btn btn-outline-primary filter-btn" asp-action="Last12Months">12 Months</a>
 </div>
 
-@foreach(var item in Model)
-{
-    <h5>@item.Mnth  @item.Yr<span class="text-success">@item.SysAvg / @item.DiaAvg</span></h5>
-}
+<div class="months-container text-center">
+    @foreach (var item in Model)
+    {
+        <a class="btn month-btn" asp-action="MonthData" asp-route-id="@item.Mnth">
+            @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Mnth) @item.Yr
+            <span class="text-success">  @Math.Round(@item.SysAvg, 0, MidpointRounding.AwayFromZero) / @Math.Round(@item.DiaAvg, 0, MidpointRounding.AwayFromZero)</span>
+        </a>
+    }
+</div>
 
 @*<table class="table">
     <thead>
