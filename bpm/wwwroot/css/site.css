@@ -83,10 +83,22 @@ body {
 
 .index-links {
     width: 100%;
+    margin-bottom: 15px;
+}
+.index-links a:hover {
+    text-decoration: none;
 }
 
 .filter-btn {
     margin: 5px 5px 10px 5px;
+}
+
+.filters-div {
+    margin-top: -15px;
+}
+
+.avg-message {
+    margin-bottom: 15px;
 }
 
 .months-container {
@@ -104,7 +116,7 @@ body {
 }
 
     .month-btn:hover {
-        color: #fff;
+        color: #adb5bd;
         background-color: #f1f3f4;
         border-color: #adb5bd;
     }
