@@ -57,12 +57,48 @@ body {
 
 /* Custom Styling
  ------------------------------------------- */
+.landing {
+    height: 85vh;
+    background-color: #f1f3f4;
+}
+
+.landing-text {
+    margin: 25% auto;
+}
+
+.landing-bpm {
+    font-weight: 400;
+    font-size: 75px;
+    margin-bottom: 25px;
+}
+
+.landing-icons {
+    font-size: 40px;
+    margin: 10px auto 25px auto;
+}
+
+.get-started {
+    font-size: 20px;
+}
+
 .index-links {
     width: 100%;
+    margin-bottom: 15px;
+}
+.index-links a:hover {
+    text-decoration: none;
 }
 
 .filter-btn {
     margin: 5px 5px 10px 5px;
+}
+
+.filters-div {
+    margin-top: -15px;
+}
+
+.avg-message {
+    margin-bottom: 15px;
 }
 
 .months-container {
@@ -80,7 +116,7 @@ body {
 }
 
     .month-btn:hover {
-        color: #fff;
+        color: #adb5bd;
         background-color: #f1f3f4;
         border-color: #adb5bd;
     }
@@ -122,6 +158,32 @@ body {
 
 /* Media Queries */
 @media (min-width: 576px) {
+    .landing {
+        background-color: #f1f3f4;
+        margin-bottom: 20px;
+    }
+
+    .landing-text {
+        margin: auto;
+    }
+
+    .landing-bpm {
+        font-weight: 400;
+        font-size: 75px;
+        margin-bottom: 25px;
+    }
+
+    .landing-icons {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    .get-started {
+        font-size: 15px;
+    }
+
     #create-form {
         margin: 0 auto;
         max-width: 750px;

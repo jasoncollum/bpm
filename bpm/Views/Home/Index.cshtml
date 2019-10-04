@@ -2,14 +2,20 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="landing">
+    <div class="jumbotron landing">
         <div class="landing-text d-flex flex-column justify-content-center">
-            <h1 class="impactTextHead text-primary text-center" style="line-height: 55px;">bpm</h1>
-            <p class="impactTextP PPBldItl text-primary text-center">record and map your blood pressure readings</p>
-            <h2 class="impactTextHead text-primary text-center" style="line-height: 55px;">
-                <a asp-action="Create" asp-controller="Entries">Get Started >>></a>
-            </h2>
+            <h1 class="text-primary text-center landing-bpm">bpm</h1>
+            <p class="impactTextP PPBldItl text-center">record and map your blood pressure readings</p>
+            <h3 class="landing-icons">
+                <i class="fas fa-heart text-primary"></i>
+                <i class="fas fa-heartbeat text-danger"></i>
+                <i class="fas fa-weight text-success"></i>
+                <i class="fas fa-sticky-note text-warning"></i>
+            </h3>
+            <div class="impactTextHead text-primary text-center" style="line-height: 55px;">
+                <a type-button class="btn btn-outline-primary get-started" asp-action="Create" asp-controller="Entries">Get Started</a>
+            </div>
         </div>
     </div>
-    
-    
+
+
