@@ -79,8 +79,19 @@ body {
 }
 
 .get-started,
-.register-btn {
+.register-btn,
+.login-btn {
     font-size: 20px;
+}
+
+.register-btn {
+    margin-top: 10px;
+    padding-top: 4px;
+}
+
+.login-btn {
+    margin-top: 0;
+    padding-top: 4px;
 }
 
 .index-links {
@@ -160,13 +171,18 @@ body {
 
 /* Media Queries */
 @media (min-width: 576px) {
-    .register-div {
+    .register-div,
+    .login-div {
         margin-left: auto;
         margin-right: auto;
     }
 
     .register-form {
         width: 258px;
+    }
+
+    .login-form {
+        width: 270px;
     }
 
     .landing {
