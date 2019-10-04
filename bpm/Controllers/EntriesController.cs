@@ -117,7 +117,7 @@ namespace bpm.Controllers
         {
             var user = await GetCurrentUserAsync();
 
-            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id && 
+            var entries = await _context.Entry.Where(e => e.ApplicationUserId == user.Id &&
             (e.DateEntered.Month == month && e.DateEntered.Year == year)).ToListAsync();
 
             return View("Index", entries.OrderByDescending(ent => ent.DateEntered));
