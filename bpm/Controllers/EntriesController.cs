@@ -91,14 +91,14 @@ namespace bpm.Controllers
             e.DateEntered > DateTime.Now.AddMonths(-12)).ToListAsync();
 
 
-           var monthAverages = entries.Select(e => (e.DateEntered.Year, e.DateEntered.Month, e.Systolic, e.Diastolic))
+            var monthAverages = entries.Select(e => (e.DateEntered.Year, e.DateEntered.Month, e.Systolic, e.Diastolic))
                 .GroupBy(x => (x.Year, x.Month), (key, group) => new Month()
-            {
-                Yr = key.Year,
-                Mnth = key.Month,
-                SysAvg = group.Average(e => e.Systolic),
-                DiaAvg = group.Average(e => e.Diastolic)
-            }).ToList();
+                 {
+                     Yr = key.Year,
+                     Mnth = key.Month,
+                     SysAvg = group.Average(e => e.Systolic),
+                     DiaAvg = group.Average(e => e.Diastolic)
+                 }).ToList();
 
             if (monthAverages.ToList().Count > 0)
             {
