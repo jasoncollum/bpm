@@ -42,20 +42,23 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateEntered)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BloodPressure)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pulse)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEntered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodPressure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pulse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-pencil-alt text-warning"></i></a>
+            </td>
+        </tr>
             <tr>
                 <td class="table-note text-secondary" colspan="12">@Html.DisplayFor(modelItem => item.Notes)</td>
             </tr>
