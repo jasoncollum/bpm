@@ -163,6 +163,7 @@ namespace bpm.Controllers
             if (ModelState.IsValid)
             {
                 entry.ApplicationUserId = user.Id;
+                entry.DateEntered = DateTime.Now;
 
                 _context.Add(entry);
                 await _context.SaveChangesAsync();
