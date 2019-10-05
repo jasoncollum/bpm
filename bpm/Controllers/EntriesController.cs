@@ -186,7 +186,7 @@ namespace bpm.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
+            ViewData["ApplicationUserId"] = entry.ApplicationUserId;
             return View(entry);
         }
 
@@ -206,6 +206,7 @@ namespace bpm.Controllers
             {
                 try
                 {
+
                     _context.Update(entry);
                     await _context.SaveChangesAsync();
                 }
@@ -222,7 +223,7 @@ namespace bpm.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
+            ViewData["ApplicationUserId"] = entry.ApplicationUserId;
             return View(entry);
         }
 
