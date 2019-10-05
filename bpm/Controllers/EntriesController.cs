@@ -236,7 +236,7 @@ namespace bpm.Controllers
             }
 
             var entry = await _context.Entry
-                .Include(e => e.User)
+                //.Include(e => e.ApplicationUserId)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (entry == null)
             {

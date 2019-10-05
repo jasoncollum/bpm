@@ -11,7 +11,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Id" class="form-control"/>
             <input type="hidden" asp-for="DateEntered" />
             <div class="form-group">
                 <label asp-for="Systolic" class="control-label"></label>
@@ -52,7 +52,7 @@
 
 <div>
     <a asp-action="Index">Back to List</a> |
-    <a asp-action="Delete" asp-route-id="Id" class="text-danger">Delete Entry</a>
+    <a asp-controller="Entries" asp-action="Delete" asp-route-id="@Model.Id" class="text-danger">Delete Entry</a>
 </div>
 
 @section Scripts {
