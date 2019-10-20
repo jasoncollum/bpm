@@ -13,8 +13,6 @@ namespace bpm.Models
         public int Id { get; set; }
 
         [Required]
-        //[DataType(DataType.DateTime)]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy h:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateEntered { get; set; }

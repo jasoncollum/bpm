@@ -17,8 +17,5 @@ namespace bpm.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-
-        //[NotMapped]
-        //public virtual List<Entry> Entries { get; set; }
     }
 }
