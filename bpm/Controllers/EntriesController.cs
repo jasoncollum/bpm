@@ -102,7 +102,6 @@ namespace bpm.Controllers
 
             if (monthAverages.ToList().Count > 0)
             {
-                //ViewBag.monthAverages = monthAverages;
                 return View("Months", monthAverages.OrderByDescending(e => e.Mnth));
             }
             else
@@ -134,6 +133,7 @@ namespace bpm.Controllers
             var entry = await _context.Entry
                 .Include(e => e.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (entry == null)
             {
                 return NotFound();
@@ -145,13 +145,10 @@ namespace bpm.Controllers
         // GET: Entries/Create
         public IActionResult Create()
         {
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return View();
         }
 
         // POST: Entries/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,DateEntered,Systolic,Diastolic,Pulse,Weight,Notes,ApplicationUserId")] Entry entry)
@@ -169,7 +166,7 @@ namespace bpm.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", entry.ApplicationUserId);
+
             return View(entry);
         }
 
@@ -191,8 +188,6 @@ namespace bpm.Controllers
         }
 
         // POST: Entries/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,DateEntered,Systolic,Diastolic,Pulse,Weight,Notes,ApplicationUserId")] Entry entry)
@@ -236,7 +231,6 @@ namespace bpm.Controllers
             }
 
             var entry = await _context.Entry
-                //.Include(e => e.ApplicationUserId)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (entry == null)
             {
